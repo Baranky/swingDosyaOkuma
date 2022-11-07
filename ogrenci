@@ -1,0 +1,31 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package dosyaokuma;
+
+public class ogrenci {
+
+    private String ad;
+    private String soyad;
+    private int no;
+    
+    public String getAd() {
+        return ad;
+    }
+    public void setAd(String ad) {
+        this.ad = ad;
+    }
+    public String getSoyad() {
+        return soyad;
+    }
+    public void setSoyad(String soyad) {
+        this.soyad = soyad;
+    }
+    public int getNo() {
+        return no;
+    }
+    public void setNo(int no) {
+        this.no = no;
+    }
+}
