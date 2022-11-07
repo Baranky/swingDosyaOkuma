@@ -1,0 +1,85 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package dosyaokuma;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
+
+public class DosyaOkuma {
+
+    public static void main(String[] args) throws IOException {
+        JButton b1;
+        JLabel l1, l2, l3;
+        JTextField t1, t2, t3;
+        JFrame jf = new JFrame();
+
+        l1 = new JLabel("AD:");
+        l1.setBounds(30, 15, 150, 30);
+        t1 = new JTextField();
+        t1.setBounds(80, 15, 150, 30);
+
+        l2 = new JLabel("SOYAD:");
+        l2.setBounds(30, 50, 150, 30);
+        t2 = new JTextField();
+        t2.setBounds(80, 50, 150, 30);
+
+        l3 = new JLabel("NO:");
+        l3.setBounds(30, 90, 150, 30);
+        t3 = new JTextField();
+        t3.setBounds(80, 90, 150, 30);
+
+        b1 = new JButton("KAYDET");
+        b1.setBounds(105, 160, 100, 30);
+
+        File file = new File("odev10.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        ogrenci ogr = new ogrenci();
+        b1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FileWriter fwriter = null;
+                ogr.setAd(t1.getText());
+                ogr.setSoyad(t2.getText());
+                ogr.setNo(Integer.parseInt(t3.getText()));
+                try {
+                    String value = ogr.getAd() + " " + ogr.getSoyad() + " " + ogr.getNo();
+                    fwriter = new FileWriter(file, true);
+                    BufferedWriter bwriter = new BufferedWriter(fwriter);
+                    bwriter.append(value);
+                    bwriter.newLine();
+                    bwriter.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(DosyaOkuma.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    try {
+                        fwriter.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(DosyaOkuma.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+
+        jf.add(l3);
+        jf.add(l2);
+        jf.add(l1);
+        jf.add(b1);
+        jf.add(t1);
+        jf.add(t2);
+        jf.add(t3);
+        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jf.setSize(400, 400);
+        jf.setLayout(null);
+        jf.setVisible(true);
+
+    }
+}
